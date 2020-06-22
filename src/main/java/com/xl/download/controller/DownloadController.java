@@ -15,6 +15,8 @@ import java.util.Map;
 public class DownloadController {
     private  String LIST="list";
     private String DOWNLOAD="download";
+    private String UPDATEFILE="updatefile";
+
     @Autowired
     DownloadMapper downloadMapper;
     @Autowired
@@ -32,8 +34,9 @@ public String download(HttpServletRequest request, Model model){
 //@ResponseBody
     public String getDownload(@PathVariable (name="cid") int cid,Model model) {
     List<download>  ListDownload=downloadMapper.getdownloadbyCid(cid);
-    List<category>  ListCategory= categoryMapper.getcategory();
-    model.addAttribute("ListCategory",ListCategory);
+    //List<category>  ListCategory= categoryMapper.getcategory();
+   // model.addAttribute("ListCategory",ListCategory);
+    getcategorycommon(model);
     model.addAttribute("ListDownload",ListDownload);
         return DOWNLOAD;
     }
@@ -58,9 +61,22 @@ public String download(HttpServletRequest request, Model model){
         downloadMapper.deleteSofe(id);
         return "redirect:/lists";
     }
+    @RequestMapping(value="/update/{id}")
+    public String getUpdateSofe(@PathVariable(name="id") int id,Model  model){
+        download downloadSofe= downloadMapper.getdownloadbyId(id);
+        model.addAttribute("download",downloadSofe);
+    return UPDATEFILE;
+    }
+
+
 //更改功能
+    @RequestMapping(value = "/update")
 public String UpdateSofe(Map<String,Object> map,Model model){
 
     return "";
 }
+public void  getcategorycommon(Model model){
+        List<category>  ListCategory= categoryMapper.getcategory();
+        model.addAttribute("ListCategory",ListCategory);
+    }
 }

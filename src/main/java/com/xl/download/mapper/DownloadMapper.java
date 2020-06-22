@@ -20,4 +20,6 @@ public  List<download> getdownloadbyCid(int cid);
 public int upload(String software_name, String software_type, String software_url, String Specification, int Cid, String software_imge, Date date);
 @Delete("delete from download where id=#{id}")
 public int deleteSofe(int id);
+    @Select("select * from download where id=#{id}")
+    public  download getdownloadbyId(int id);
 }

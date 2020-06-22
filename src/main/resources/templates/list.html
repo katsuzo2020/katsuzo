@@ -40,7 +40,7 @@
 					<table class="table" cellspacing="0" cellpadding="0" width="100%" align="center" border="0">
 						<tr>
 							<th width="30"><input type="checkbox" id="all" /></th>
-							<th>编号</th>
+							<th>图标</th>
 							<th>软件</th>
 							<th>类型</th>
 							<th>路径</th>
@@ -54,7 +54,7 @@
 							
 								<tr th:each="listDownload:${ListDownload}">
 									<td ><input type="checkbox" name="IDCheck" class="acb"  th:id="${listDownload.getId()}"/></td>
-									<td th:text="${listDownload.getId()}"></td>
+									<td th:text="${listDownload.getSoftware_name()}"><img th:src="@{'/soft/'+${listDownload.getSoftware_imge()}}" width="48" height="48" __lazypushed="1"></td>
 									<td th:text="${listDownload.getSoftware_name()}">user1</td>
 									<td th:text="${listDownload.getSoftware_type()}">user1@qq.com</td>
 									<td th:text="${listDownload.getSoftware_url()}">18</td>
@@ -62,7 +62,7 @@
 									<td th:text="${listDownload.getCid()}">角色1，角色2</td>
 									<td>角色1，角色2</td>
 									<td>
-										<a href="#">编辑</a>
+										<a th:href="@{'/update/'+${listDownload.getId()}}">编辑</a>
 										<a th:href="@{'/delete/'+${listDownload.getId()}}">删除</a>
 									</td>
 								</tr>
