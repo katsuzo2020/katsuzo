@@ -8,7 +8,7 @@ import java.awt.image.BufferedImage;
 import java.io.*;
 
 public class FileUtils {
-    private static void  uploadFile(byte[] file, String filePath, String fileName) throws Exception {
+    public static void  uploadFile(byte[] file, String filePath, String fileName) throws Exception {
         File targetFile = new File(filePath);
         if (!targetFile.exists()) {
             targetFile.mkdirs();

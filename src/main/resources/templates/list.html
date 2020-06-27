@@ -30,7 +30,8 @@
 						</div>
 						<div id="box_bottom">
 							<input type="button" value="查询" class="ui_input_btn01"/>
-							<input type="button" value="新增" class="ui_input_btn01 btn_input"/> 
+							<a class="ui_input_btn01 btn_input" href="/upload">上传软件</a>
+
 						</div>
 					</div>
 				</div>
@@ -54,7 +55,7 @@
 							
 								<tr th:each="listDownload:${ListDownload}">
 									<td ><input type="checkbox" name="IDCheck" class="acb"  th:id="${listDownload.getId()}"/></td>
-									<td th:text="${listDownload.getSoftware_name()}"><img th:src="@{'/soft/'+${listDownload.getSoftware_imge()}}" width="48" height="48" __lazypushed="1"></td>
+									<td><img th:src="@{'/soft/'+${listDownload.getSoftware_imge()}}" width="48" height="48" __lazypushed="1"></td>
 									<td th:text="${listDownload.getSoftware_name()}">user1</td>
 									<td th:text="${listDownload.getSoftware_type()}">user1@qq.com</td>
 									<td th:text="${listDownload.getSoftware_url()}">18</td>

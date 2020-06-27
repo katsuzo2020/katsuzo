@@ -14,17 +14,16 @@ public class MyLoginInterceptors implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         try {
             String  user = (String) request.getSession().getAttribute("loginUser");
-            System.out.println(request.getContextPath()+"你的登陆页地址");
+            LoggerFactory.getLogger(getClass()).info(request.getContextPath()+"//////你的登陆页地址"+user);
 
             if (user != null) {
-                System.out.println(request.getContextPath()+"你的登陆页地址"+user);
-                LoggerFactory.getLogger(getClass()).info(request.getContextPath()+"你的登陆页地址"+user);
+
                 return true;
             } else {
                 return false;
             }
         }catch (Exception exception){
-           System.out.println(request.getContextPath()+"你的登陆页地址");
+
             return false;
         }
     }

@@ -42,7 +42,7 @@
             <td>
                 <select id="category">
                     <option value="">选择软件类型</option>
-                    <option  th:each="listcategory:${Listcategory}" th:value="${listcategory.getId()}"  th:selected="${listcategory.getSoftware_category()}" th:text="${listcategory.getSoftware_category()}" "></option>
+                    <option  th:each="listcategory:${Listcategory}" th:value="${listcategory.getId()}"  th:selected="${listcategory.getSoftware_category()}" th:text="${listcategory.getSoftware_category()}"></option>
 <!--                    <option value="css">css</option>-->
 <!--                    <option value="JavaScript">JavaScript</option>-->
 <!--                    <option value="php">php</option>-->

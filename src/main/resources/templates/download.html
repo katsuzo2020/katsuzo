@@ -511,7 +511,7 @@ color: #004E98;
                     <table unselectable="on" cellspacing="0">
                         <tbody unselectable="on" class="ac_menu">
 
-                        </tbody></table></div></div></div><input id="js-kw-search" name="" type="text" class="s" value="新乐数码" autocomplete="off">
+                        </tbody></table></div></div></div><input id="js-kw-search" name="" type="text" class="s"  autocomplete="off">
 <!--        <span class="clear-btn"></span>-->
 		<a id="js-kw-search-btn" href="#" class="sbtn">搜索</a></div>
   </div>
@@ -557,7 +557,7 @@ color: #004E98;
       if(key == "13" ){
           //document.getElementById('js-kw-search-btn').click();chrome不支持click
           if(kw.value){
-              window.location.href = "//baoku.360.cn/soft/search?kw="+kw.value;
+              window.location.href = "/dowload/list"+kw.value;
           }
       }
   };
@@ -626,6 +626,7 @@ color: #004E98;
                                <p>一个针对 .net framework 4的高度兼容的就地更新	</p>
 		<div type="hidden" class="dload7-btn"><a class="js-btn-download" bk="btntodown" data-softid="102249303" href="javascript:void(0);"></a></div>
 		</li>
+
                 <li th:each="ListDownload1:${ListDownload}" th:id="${ListDownload1.getId()}" class="data-key" th:data-bkname="${ListDownload1.getSoftware_name()}">
                     <div  class="shade-img"><a th:href="@{'/soft/'+${ListDownload1.getSoftware_url()}}"><img th:src="@{'/soft/'+${ListDownload1.getSoftware_imge()}}" width="48" height="48" __lazypushed="1"></a></div>
                     <div class="h2">
