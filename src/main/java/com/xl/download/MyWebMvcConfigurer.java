@@ -1,5 +1,6 @@
 package com.xl.download;
 //
+
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.Ordered;
 import org.springframework.web.servlet.config.annotation.*;
@@ -10,22 +11,22 @@ public class MyWebMvcConfigurer implements WebMvcConfigurer {
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/soft/**").addResourceLocations("file:D://迅雷下载/");
-      //  registry.addResourceHandler("/static/**").addResourceLocations("file:D://迅雷下载/");
+        //  registry.addResourceHandler("/static/**").addResourceLocations("file:D://迅雷下载/");
 
     }
-        //拦截器
+
+    //拦截器
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        InterceptorRegistration registration= registry.addInterceptor(new MyLoginInterceptors());
+        InterceptorRegistration registration = registry.addInterceptor(new MyLoginInterceptors());
         registration.addPathPatterns("/**");
         registration.excludePathPatterns(
-
                 "/",
                 "/soft/*",
                 "/list/cid/*",
                 "/userlogin",
                 "/login",
-                "/download",
+                "/download/*",
                 "/**/*.html",            //html静态资源
                 "/**/*.js",              //js静态资源
                 "/**/*.css",             //css静态资源
@@ -39,7 +40,8 @@ public class MyWebMvcConfigurer implements WebMvcConfigurer {
     public void addViewControllers(ViewControllerRegistry registry) {
         System.out.println("进入.....拦截");
         registry.addViewController("/").setViewName("redirect:/download");
-       // registry.setOrder(Ordered.HIGHEST_PRECEDENCE);
+        registry.addViewController("/download").setViewName("redirect:/download/0");
+        // registry.setOrder(Ordered.HIGHEST_PRECEDENCE);
         registry.addViewController("/login").setViewName("login");
     }
 }

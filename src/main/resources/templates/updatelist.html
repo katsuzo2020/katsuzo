@@ -1,0 +1,37 @@
+<!DOCTYPE HTML>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>修改页面</title>
+    <meta name="description" content=""/>
+    <meta name="viewport"
+          content="width=device-width , initial-scale=1.0 , user-scalable=0 , minimum-scale=1.0 , maximum-scale=1.0"/>
+    <link rel="stylesheet" type="text/css" href="../static/css/stylelist.css">
+</head>
+<body>
+<form class="box" method="post" action="/updatesoft">
+    <h1>修改页面</h1>
+    <input type="text" name="id" th:value="${listDownload.getId()}">
+    <input type="hidden" name="software_type" th:value="${listDownload.getSoftware_type()}">
+    <input type="text" name="userid" th:value="${listDownload.getUserid()}">
+    <input type="text" name="date" th:value="${listDownload.getDate()}">
+    <div><img name="software_image" th:src="@{'/soft/'+${listDownload.getSoftware_image()}}">
+        <input name="software_image" type="file" th:src="@{'/soft/'+${listDownload.getSoftware_image()}}">
+    </div>
+    <div>
+        <label>软件名称:</label>
+        <input type="text" name="software_name" placeholder="软件名称" th:value="${listDownload.getSoftware_name()}">
+    </div>
+    <div>
+        <label>描述/详情: </label><input type="text" name="Specification" placeholder="描述/详情"
+                                     th:value="${listDownload.getSpecification()}">
+        <label>选择软件类型:</label> <select id="category" name="cid">
+        <option th:each="category:${ListCategory}" th:value="${category.getId()}"
+                th:selected="${category.getId()}==${listDownload.getCid()}"
+                th:text="${category.getSoftware_category()}"></option>
+    </select>
+    </div>
+    <input type="submit" name="" value="修改">
+</form>
+</body>
+</html>

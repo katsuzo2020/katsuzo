@@ -14,9 +14,36 @@ public class download {
     private String Specification;
     //区分软件的类型id
     private int cid;
+    private User user;
+    private String software_image;
+    private int userid;
+    private Date date;
     private category category;
-    private String software_imge;
-    private  Date date;
+
+    public com.xl.download.bean.category getCategory() {
+        return category;
+    }
+
+    public void setCategory(com.xl.download.bean.category category) {
+        this.category = category;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
     public int getId() {
         return id;
     }
@@ -41,6 +68,14 @@ public class download {
         this.id = id;
     }
 
+    public String getSoftware_image() {
+        return software_image;
+    }
+
+    public void setSoftware_image(String software_image) {
+        this.software_image = software_image;
+    }
+
     public void setSoftware_name(String software_name) {
         this.software_name = software_name;
     }
@@ -57,14 +92,6 @@ public class download {
         Specification = specification;
     }
 
-    public category getCategory() {
-        return category;
-    }
-
-    public void setCategory(category category) {
-        this.category = category;
-    }
-
     public int getCid() {
         return cid;
     }
@@ -73,12 +100,27 @@ public class download {
         this.cid = cid;
     }
 
-    public String getSoftware_imge() {
-        return software_imge;
+    public int getUserid() {
+        return userid;
     }
 
-    public void setSoftware_imge(String software_imge) {
-        this.software_imge = software_imge;
+    public void setUserid(int userid) {
+        this.userid = userid;
     }
 
+    @Override
+    public String toString() {
+        return "download{" +
+                "id=" + id +
+                ", software_name='" + software_name + '\'' +
+                ", software_type='" + software_type + '\'' +
+                ", software_url='" + software_url + '\'' +
+                ", Specification='" + Specification + '\'' +
+                ", cid=" + cid +
+                ", user=" + user +
+                ", software_image='" + software_image + '\'' +
+                ", date=" + date +
+                ", category=" + category +
+                '}';
+    }
 }

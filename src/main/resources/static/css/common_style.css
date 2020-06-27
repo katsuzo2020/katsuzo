@@ -3,7 +3,7 @@
 body {
 	margin: 0;
 	font: normal 15px "Microsoft YaHei";
-	color: #0C0C0C;
+	color: #34495e;
 	font-size: 14px;
 	line-height: 20px;
 }
@@ -35,7 +35,7 @@ a:link,a:visited,a:hover,a:active {
 a:hover {
 	list-style: none;
 	text-decoration: underline;
-	color: #1A5CC6;
+	color: #34495e;
 }
 
 .table {
@@ -46,7 +46,7 @@ a:hover {
 }
 
 .table tbody tr th {
-	background: #044599 no-repeat;
+	background: #34495e no-repeat;
 	text-align: center;
 	border-left: 1px solid #02397F;
 	border-right: 1px solid #02397F;

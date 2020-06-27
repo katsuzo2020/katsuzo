@@ -1,10 +1,10 @@
 package com.xl.download.controller;
 
 
-
 import com.alibaba.fastjson.JSONException;
 import com.alibaba.fastjson.JSONObject;
 import com.sun.xml.internal.ws.util.xml.CDATA;
+import com.xl.common.Utils.FileUtils;
 import com.xl.common.Utils.Time;
 import com.xl.download.bean.category;
 import com.xl.download.bean.download;
@@ -35,13 +35,15 @@ public class UploadController {
     CategoryMapper categoryMapper;
     @Autowired
     DownloadMapper downloadMapper;
-   @RequestMapping(value = "/upload")
+
+    @RequestMapping(value = "/upload")
     public String upload(Model model, HttpServletRequest request) {
-       List<category> Listcategory= categoryMapper.getcategory();
-       model.addAttribute("Listcategory",Listcategory);
-       System.out.println("---------------------进入上传---------------成功--发给对方是个----今后会");
-       return "uploadfile";
+        List<category> Listcategory = categoryMapper.getcategory();
+        model.addAttribute("Listcategory", Listcategory);
+        System.out.println("---------------------进入上传---------------成功--发给对方是个----今后会");
+        return "uploadfile";
     }
+
     @ResponseBody()
     @RequestMapping(value = "/download/upload")
     public JSONObject uploads(@RequestParam("uploadfile") MultipartFile file, download d, HttpServletRequest request) throws JSONException {
@@ -57,9 +59,9 @@ public class UploadController {
             jo.put("fileName", "");
         }
         try {
-            uploadFile(file.getBytes(), filePath, fileName);
-            toIcon(filePath,fileName);
-            int ruser=downloadMapper.upload(fileName.substring(0,fileName.lastIndexOf(".")),contentType,filePath +"/"+ fileName,d.getSpecification(),d.getCid(),filePath +"/ico/"+fileName.substring(0,fileName.lastIndexOf("."))+".ico",Time.getSystemTime());
+            FileUtils.uploadFile(file.getBytes(), filePath, fileName);
+            FileUtils.toIcon(filePath, fileName);
+            int ruser = downloadMapper.upload(fileName.substring(0, fileName.lastIndexOf(".")), contentType, "/" + fileName, d.getSpecification(), d.getCid(), "/ico/" + fileName.substring(0, fileName.lastIndexOf(".")) + ".ico", Time.getSystemTime());
             System.out.println(ruser);
             jo.put("status", 1);
             jo.put("fileName", fileName);
@@ -72,37 +74,37 @@ public class UploadController {
         return jo;
     }
 
-    private void uploadFile(byte[] file, String filePath, String fileName) throws Exception {
-        File targetFile = new File(filePath);
-        if (!targetFile.exists()) {
-            targetFile.mkdirs();
-        }
-        FileOutputStream out = new FileOutputStream(filePath +"/"+ fileName);
-        out.write(file);
-        out.flush();
-        out.close();
-    }
+//    private void uploadFile(byte[] file, String filePath, String fileName) throws Exception {
+//        File targetFile = new File(filePath);
+//        if (!targetFile.exists()) {
+//            targetFile.mkdirs();
+//        }
+//        FileOutputStream out = new FileOutputStream(filePath +"/"+ fileName);
+//        out.write(file);
+//        out.flush();
+//        out.close();
+//    }
     //文件获取图标
-    public void toIcon(String filePath, String fileName) throws FileNotFoundException {
-        File file=new File(filePath +"/"+ fileName);
-        System.out.println(file.getPath()+"---------------------------------"+file);
-//        Icon  icon=FileSystemView.getFileSystemView().getSystemIcon(file);//获取小图标
-        ShellFolder shellFolder = ShellFolder.getShellFolder(file);
-        Icon icon = new ImageIcon(shellFolder.getIcon(true));
-        File icofile = new File(filePath +"/ico/" );
-        if (!icofile.exists()) {
-            icofile.mkdirs();
-        }
-        OutputStream inStream = new FileOutputStream(icofile+"/"+fileName.substring(0,fileName.indexOf("."))+".ico");
-        try {
-            BufferedImage www = (BufferedImage)((ImageIcon) icon).getImage();
-            ImageIO.write(www, "png", inStream);
-            inStream.flush();
-            inStream.close();
-        } catch (IOException e) {
-// TODO Auto-generated catch block
-            e.printStackTrace();
-            System.out.println("获取成功---------------"+e);
-        }
-    }
+//    public void toIcon(String filePath, String fileName) throws FileNotFoundException {
+//        File file=new File(filePath +"/"+ fileName);
+//        System.out.println(file.getPath()+"---------------------------------"+file);
+////        Icon  icon=FileSystemView.getFileSystemView().getSystemIcon(file);//获取小图标
+//        ShellFolder shellFolder = ShellFolder.getShellFolder(file);
+//        Icon icon = new ImageIcon(shellFolder.getIcon(true));
+//        File icofile = new File(filePath +"/ico/" );
+//        if (!icofile.exists()) {
+//            icofile.mkdirs();
+//        }
+//        OutputStream inStream = new FileOutputStream(icofile+"/"+fileName.substring(0,fileName.indexOf("."))+".ico");
+//        try {
+//            BufferedImage www = (BufferedImage)((ImageIcon) icon).getImage();
+//            ImageIO.write(www, "png", inStream);
+//            inStream.flush();
+//            inStream.close();
+//        } catch (IOException e) {
+//// TODO Auto-generated catch block
+//            e.printStackTrace();
+//            System.out.println("获取成功---------------"+e);
+//        }
+//    }
 }

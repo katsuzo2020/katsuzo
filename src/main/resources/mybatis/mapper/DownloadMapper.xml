@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xl.download.mapper.DownloadMapper">
+
+    <select id="getdownloadbyId" resultType="com.xl.download.bean.download">
+        select * from download d,category c where d.id=#{id} and d.Cid=c.id
+  </select>
+
+    <resultMap id="DownloadById" type="com.xl.download.bean.download">
+        <id column="id" property="id"/>
+        <result column="software_name" property="software_name"></result>
+        <result column="Cid" property="cid"></result>
+        <result column="software_type" property="software_type"></result>
+        <result column="software_url" property="software_url"></result>
+        <result column="Specification" property="Specification"></result>
+        <result column="software_image" property="software_image"></result>
+        <association property="category" javaType="com.xl.download.bean.category">
+            <id column="id" property="id"></id>
+            <result column="software_category" property="software_category"></result>
+        </association>
+    </resultMap>
+    <select id="getdownloadAll" resultType="com.xl.download.bean.download" resultMap="DownloadById">
+        select * from download d,category c where d.Cid=c.id
+  </select>
+
+</mapper>

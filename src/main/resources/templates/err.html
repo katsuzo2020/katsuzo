@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<body>
+<h1>操作失败</h1>
+<p><strong id="time" class="time">3</strong>秒后将自动跳转到<a href="/lists" target="_self" id="newUrl" class="newUrl">官方网站</a>
+</p>
+<script>
+    (function () {
+        var time = document.getElementById("time");
+        var i = parseInt(time.innerHTML);
+        var newUrl = document.getElementById("newUrl");
+        (function (i) {
+            var fn = arguments.callee;
+            if (i >= 0) {
+                setTimeout(function () {
+                    time.innerHTML = i;
+                    fn(--i);
+                }, 1000);
+            } else {
+                window.location.href = newUrl.href;
+            }
+        })(i);
+    })();
+</script>
+</body>
+</html>
